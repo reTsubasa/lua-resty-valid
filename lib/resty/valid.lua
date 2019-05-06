@@ -68,9 +68,42 @@ function _M.string(arg,opts)
         return true
     end
     
-    
---    return true
 end
 
+-- valid the type of input arg as the "number"
+-- return true will type of arg is the number,else return nil
+-- optional:opts.a table for validate the number range
+-- ex:opts = {min=0,max = 100} as the arg should be at 0-100
+function _M.number(arg,opts)
+    opts = opts or {}
+    -- input opts valid
+    if type(opts) ~= "table" then
+        return nil,"opts type must be a table"
+    end
+
+    if opts.min and opts.max then
+        if type(opts.min) ~= "number" or type(opts.max) ~= "number" then
+            return nil,"min or max type must be a number"
+        end
+        if opts.max < opts.min then
+          return nil,"min must lt than max"
+        end
+    elseif opts.min or opts.max then
+        return nil,"min and max must be given together"
+    end
+
+    -- main valid
+    if type(arg) ~= "number" then
+        return nil
+    elseif opts.min and opts.max then
+        if opts.min <= arg and arg <= opts.max then
+            return true
+        else
+            return nil,s_fmt("arg must at %s-%s",opts.min,opts.max)
+        end
+    else
+        return true
+    end
+end
 
 return _M
