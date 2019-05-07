@@ -129,7 +129,7 @@ function _M.ipv4(arg,opts)
     end
 
     if opts.regex then
-        if opts.regex ~= "pcre" or opts.regex ~= "orig" then
+        if opts.regex ~= "pcre" and opts.regex ~= "orig" then
             return nil,"regex system choice miss"
         end
     end
