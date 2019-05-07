@@ -128,8 +128,10 @@ function _M.ipv4(arg,opts)
         return nil,"opts type must be a table"
     end
 
-    if opts.regex and (opts.regex ~= "pcre" or opts.regex ~= "orig") then
-        return nil,"regex system choice miss"
+    if opts.regex then
+        if opts.regex ~= "pcre" or opts.regex ~= "orig" then
+            return nil,"regex system choice miss"
+        end
     end
 
     if opts.private and type(opts.private) ~= "boolean" and opts.regex ~= "pcre" then
