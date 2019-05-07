@@ -184,8 +184,8 @@ function _M.choice(arg,opts)
     if not opts or type(opts) ~= "table" then
         return nil,"choice table must given"
     end
-    if not arg or type(arg) ~= "string" then
-        return nil,"arg must given as a string"
+    if not arg then
+        return nil,"arg must given"
     end
 
     for _, value in ipairs(opts) do
