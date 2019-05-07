@@ -38,19 +38,19 @@ for i, v in ipairs(t) do
           -- print(re,v[1],err)
         end
         
-      else
+    else
         if v[3] then
-          re = true
-          -- print(re,v[1],err)
+            re = true
+            -- print(re,v[1],err)
         else
-          re = false
-          table.insert(fails,{i,v[1],err})
+            re = false
+            table.insert(fails,{i,v[1],err})
         end
-      end
-      test_round =  test_round +1
-      if re then
-        test_pass = test_pass +1
-      end
+    end
+    test_round =  test_round +1
+    if re then
+    test_pass = test_pass +1
+    end
 end
 
 -- 总结
