@@ -1,4 +1,4 @@
-local va = require("resty.valid")
+local va = require("lua-resty-valid.lib.resty.valid") or require("resty.valid")
 local fmt = string.format
 -- 测试pcre系统时，应该通过openresty环境调用，原生的lua没有pcre支持
 

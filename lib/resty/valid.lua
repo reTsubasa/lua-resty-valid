@@ -176,5 +176,24 @@ function _M.ipv4(arg,opts)
     end
 end
 
+-- valid the input arg ,if it in the given opts (a array table contain all the choices)
+-- return true if arg is in the choice table ,else return nil
+-- ex:
+--    {ele1,ele2,ele3,...}
+function _M.choice(arg,opts)
+    if not opts or type(opts) ~= "table" then
+        return nil,"choice table must given"
+    end
+    if not arg or type(arg) ~= "string" then
+        return nil,"arg must given as a string"
+    end
+
+    for _, value in ipairs(opts) do
+        if value == arg then
+            return true
+        end
+    end
+    return nil
+end
 
 return _M

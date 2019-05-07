@@ -1,19 +1,12 @@
 local va = require("lua-resty-valid.lib.resty.valid") or require("resty.valid")
 local fmt = string.format
+-- 测试pcre系统时，应该通过openresty环境调用，原生的lua没有pcre支持
 
 -- 用例
 local t = {
-    {1,nil,true},
-    {"a",nil,false},
-    {123,{min = 3,max = 100},false},
-    {321,{min =500 ,max =570 },false},
-    {2,{min =100 ,max =2 },false},
-    {{1,2,3},nil,false},
-    {true,{min = 1,max = 3},false},
-    {123,{min =1 ,max = 222},true},
+   {2,{1,2,3},true},
+   {"apple",{"banana","perl","apple"},true} 
 }
-
-
 -- 实际测试轮数
 local test_round = 0
 --测试通过轮数
@@ -23,21 +16,19 @@ local test_ex = #t
 --失败信息
 local fails = {}
 
-
-
 for i, v in ipairs(t) do
     local s,err,re
-    s,err = va.number(v[1],v[2])
+    s,err = va.ipv4(v[1],v[2])
     if not s then
-        if not v[3] then
-          re = true
-          -- print(re,v[1],err)
-        else
-          re = false
-          table.insert(fails,{i,v[1],err})
-          -- print(re,v[1],err)
-        end
-        
+      if not v[3] then
+        re = true
+        -- print(re,v[1],err)
+      else
+        re = false
+        table.insert(fails,{i,v[1],err})
+        -- print(re,v[1],err)
+      end
+      
     else
         if v[3] then
             re = true
@@ -52,14 +43,14 @@ for i, v in ipairs(t) do
     test_pass = test_pass +1
     end
 end
-
+  
 -- 总结
 print(fmt("Total tested: %s/%s,Passed：%s",test_round,test_ex,test_pass))
 if test_pass == test_round then
-  print("All test passed")
+    print("All test passed")
 else
-  print("Failed detail:")
-  for index, value in ipairs(fails) do
-    print(value[1],value[2],value[3])
-  end
+    print("Failed detail:")
+    for index, value in ipairs(fails) do
+        print(value[1],value[2],value[3])
+    end
 end
