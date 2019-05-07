@@ -133,8 +133,11 @@ function _M.ipv4(arg,opts)
             return nil,"regex system choice miss"
         end
     end
-    
-    if opts.priv and type(opts.priv) ~= "boolean" and opts.regex ~= "pcre" then
+    if opt.priv and type(opts.priv) ~= "boolean" then
+        return nil,"priv type must be boolean"
+    end
+
+    if opts.priv and opts.regex ~= "pcre" then
         return nil,"IP private must a boolean arg and regex system must be the PCRE"
     end
 
