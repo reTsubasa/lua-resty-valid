@@ -1,4 +1,4 @@
-local va = require("lua-resty-valid.lib.resty.valid") or require("resty.valid")
+local va =  require("resty.valid")
 local fmt = string.format
 
 -- 用例

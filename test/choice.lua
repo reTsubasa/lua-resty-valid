@@ -5,7 +5,8 @@ local fmt = string.format
 -- 用例
 local t = {
    {2,{1,2,3},true},
-   {"apple",{"banana","perl","apple"},true} 
+   {"apple",{"banana","perl","apple"},true},
+   {"apple",{"banana","perl","apple1"},false},
 }
 -- 实际测试轮数
 local test_round = 0
@@ -18,7 +19,7 @@ local fails = {}
 
 for i, v in ipairs(t) do
     local s,err,re
-    s,err = va.ipv4(v[1],v[2])
+    s,err = va.choice(v[1],v[2])
     if not s then
       if not v[3] then
         re = true

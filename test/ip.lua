@@ -1,4 +1,4 @@
-local va = require("lua-resty-valid.lib.resty.valid") or require("resty.valid")
+local va = require("resty.valid")
 local fmt = string.format
 -- 测试pcre系统时，应该通过openresty环境调用，原生的lua没有pcre支持
 
@@ -20,6 +20,7 @@ local t = {
   {"0.0.0.0",{regex = "pcre"},true},
   {"0.0.0.0",{regex = "pcre",priv = true,},false},
   {"192.168.0.1",{regex = "pcre",priv = true,},true},
+  {"192.168.0.1",{priv = true,},false},
   {"2.2.2.2",{regex = "pcre",priv = true,},false},
 }
 
