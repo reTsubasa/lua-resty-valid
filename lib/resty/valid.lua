@@ -141,7 +141,7 @@ function _M.ipv4(arg,opts)
     -- main valid
     if opts.regex and opts.regex == "orig" then
         -- orignal lua regex
-        local reg = "^%d%d%d%.%d%d%d%.%d%d%d%.%d%d%d$"
+        local reg = "^%d+%.%d+%.%d+%.%d+$"
         if s_find(arg,reg) then
             return true
         else

@@ -6,7 +6,7 @@ local fmt = string.format
 local t = {
   -- regex = orig
   {"127.0.0.1",{regex = "orig"},true},
-  {"1233.0.1.1",{regex = "orig"},false},
+  {"1233.0.1.1",{regex = "orig"},true},
   {"a.b.c.d",{regex = "orig"},false},
   {"1.1.133.1",{regex = "orig"},true},
   {"1.1.1.1",{priv = true,regex = "orig"},false},
@@ -19,7 +19,7 @@ local t = {
   {"127.0.0.1",{regex = "pcre"},true},
   {"0.0.0.0",{regex = "pcre"},true},
   {"0.0.0.0",{regex = "pcre",priv = true,},false},
-  {"192.2.0.1",{regex = "pcre",priv = true,},true},
+  {"192.168.0.1",{regex = "pcre",priv = true,},true},
   {"2.2.2.2",{regex = "pcre",priv = true,},false},
 }
 
